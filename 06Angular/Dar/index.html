@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my tset</title>
+	<script type="text/javascript" src = "dev/angular-1.6.5/angular.js"></script>
+	<script type="text/javascript" src = "dev/bootstrap-3.3.7-dist/js/jquery-1.12.2.min.js"></script>
+	<script type="text/javascript" src = "dev/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="dev/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body ng-app>
+	<div class="container">
+		<div ng-include="'temp/header.html'"></div>
+			<div ng-controller="myController" >
+				<ul class="nav nav-pills">
+					<li class="active"><a ng-click="url='temp/about.html'" href data-toggle = "tab">About</a></li>
+					<li><a ng-click="url='temp/email.html'" href data-toggle = "tab">Email</a></li>
+					<li><a ng-click="url='temp/profile.html'" href data-toggle = "tab">Profile</a></li>
+				</ul>
+				<div ng-include="url" class="focus"></div>
+			</div>
+
+		<div ng-include="'temp/footer.html'"></div>
+	</div>
+	<script type="text/javascript">
+		function myController($scope,$http,$ele){
+			$http.get("json/data.json")
+				.success(function(result){
+					$scope.menus=result;
+				});
+		}
+	</script>
+	
+</body>
+</html>
