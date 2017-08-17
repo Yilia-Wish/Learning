@@ -74,3 +74,4 @@ false继承自父亲，作用域也相同，默认为false。若是object类型参数，也是独立作用域，
 
 `17、constant方法可以注入任何服务；value只能注入factory或service、controller等；run里面直接是一个函数。在加载完以后（config之后）用，在用户操作前。
 18 、表单的验证一般都在myForm.$invalid中，另外需要注意验证是否发生过改动。复选框的验证需要注意:若接收数值为数组形式，验证数组长度；若为对象形式，验证是否改动。
+19、自定义验证表单是通过自定义指令操作的，其require值为ng-model。在link中自定义时引入ngmodelcontroller，并且对相应方法进行重写。
