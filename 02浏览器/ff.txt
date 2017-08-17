@@ -1,0 +1,93 @@
+在 Firefox 中，可通过扩展 HTMLElement 的原型 (prototype) 来实现这两个方法：
+
+if (typeof(HTMLElement) != "undefined") {
+    HTMLElement.prototype.insertAdjacentElement = function(where, parsedNode) {
+        switch (where) {
+            case "beforeBegin":
+                this.parentNode.insertBefore(parsedNode, this);
+                break;
+            case "afterBegin":
+                this.insertBefore(parsedNode, this.firstChild);
+                break;
+            case "beforeEnd":
+                this.appendChild(parsedNode);
+                break;
+            case "afterEnd":
+                if (this.nextSibling)
+                    this.parentNode.insertBefore(parsedNode, this.nextSibling);
+                else
+                    this.parentNode.appendChild(parsedNode);
+                break;
+        }
+    }
+    HTMLElement.prototype.insertAdjacentHTML = function(where, htmlStr) {
+        var r = this.ownerDocument.createRange();
+        r.setStartBefore(this);
+        var parsedHTML = r.createContextualFragment(htmlStr);
+        this.insertAdjacentElement(where, parsedHTML);
+    }
+    HTMLElement.prototype.insertAdjacentText = function(where, txtStr) {
+        var parsedText = document.createTextNode(txtStr);
+        this.insertAdjacentElement(where, parsedText);
+    }
+}
+
+
+
+
+
+
+在 Firefox 中，可通过扩展 HTMLElement 的原型 (prototype) 来实现相关属性。
+
+扩展 Firefox 中 DOM 元素的 outerHTML 属性：
+if (typeof(HTMLElement) != "undefined") {
+   HTMLElement.prototype.__defineSetter__("outerHTML", function(s) {
+        var r = this.ownerDocument.createRange();
+        r.setStartBefore(this);
+        var df = r.createContextualFragment(s);
+        this.parentNode.replaceChild(df, this);
+        return s;
+    });
+   HTMLElement.prototype.__defineGetter__("outerHTML", function(){
+        var a = this.attributes, str = "<" + this.tagName, i = 0;
+        for (; i < a.length; i++)
+            if (a[i].specified)
+                str += " " + a[i].name + '="' + a[i].value + '"';
+        if (!this.canHaveChildren)
+            return str + " />";
+        return str + ">" + this.innerHTML + "</" + this.tagName + ">";
+    });
+
+    HTMLElement.prototype.__defineGetter__("canHaveChildren", function(){
+        return !/^(area|base|basefont|col|frame|hr|img|br|input|isindex|link|meta|param)$/.test(this.tagName.toLowerCase());
+    });
+}
+扩展 Firefox 中 DOM 元素的 innerText 属性：
+if (!!document.getBoxObjectFor || window.mozInnerScreenX != null) {
+    HTMLElement.prototype.__defineSetter__("innerText", function(sText) {
+        var parsedText = document.createTextNode(sText);
+        this.innerHTML = "";
+        this.appendChild(parsedText);
+        return parsedText;
+    });
+    HTMLElement.prototype.__defineGetter__("innerText", function() {
+        var r = this.ownerDocument.createRange();
+        r.selectNodeContents(this);
+        return r.toString();
+    });
+}
+扩展 Firefox 中 DOM 元素的 outerText 属性：
+if (!!document.getBoxObjectFor || window.mozInnerScreenX != null) {
+    HTMLElement.prototype.__defineSetter__("outerText", function(sText) {
+        var parsedText = document.createTextNode(sText);
+        this.parentNode.replaceChild(parsedText, this);
+        return parsedText;
+    });
+    HTMLElement.prototype.__defineGetter__("outerText", function() {
+        var r = this.ownerDocument.createRange();
+        r.selectNodeContents(this);
+        return r.toString();
+    });
+}
+
+

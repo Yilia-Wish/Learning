@@ -1,0 +1,11 @@
+解决方案
+当 URI 中含有非 ASCII 字符时，不要依赖浏览器对 URI 的编码方式，以避免产生差异。建议：
+
+在使用此 URI 之前，先对其进行处理，如使用 JS 的 encodeURI 或 encodeURIComponent 方法（JS 的这两个方法会将字符串转换为 UTF-8 并做百分比编码）。
+在使用 XHR 对象发送 Ajax 请求时，如果仅在 query 部分含有非 ASCII 字符，请使用 post 方法发送，并在 send 之前使用 xhrObject.setRequestHeader("Content-Type","application/x-www-form-urlencoded")。或者仍使用 get 方法，但在发送前使用 encodeURI 或 encodeURIComponent 方法编码。
+经过上述处理，在此 URI 的接收端使用 UTF-8 编码来解码，如：
+客户端 JS：
+var queryString = decodeURI(uriString or queryString);
+服务端 JAVA：
+request.setCharacterEncoding("UTF-8");
+String queryString = request.getParameter(queryName);

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+<head>
+	<title>my cart</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src = "dev/angular-1.6.5/angular.js"></script>
+	<!-- <script type="text/javascript" src = "dev/bootstrap-3.3.7-dist/js/bootstrap.js"></script> -->
+
+	<script type="text/javascript" src = "index.js"></script>
+	<link rel="stylesheet" type="text/css" href="dev/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<style rel="stylesheet" type="text/css">
+		.orderColor{
+			color: red;
+		}
+		
+	</style>
+</head>
+<body >
+<div class ="container" ng-controller="myController">
+	<form class="navbar-search pull-left">
+  		<input type="text" class="search-query" ng-model="search" placeholder="Search">
+	</form>
+	<table class="table" ng-show="cart.length">
+	 <thead>
+	 	<tr>
+	 		<th ng-class="{dropup:orderType.indexOf('-id')===0}" ng-click="toggleOrderType('id')">
+	 			产品编号
+	 			<span class = "caret" ng-class="{orderColor:orderType.indexOf('id')!==-1}" ></span>
+	 		</th>
+
+	 		<th ng-class="{dropup:orderType.indexOf('-name')===0}" ng-click="toggleOrderType('name')">
+	 			产品名称
+	 			<span ng-class="{orderColor:orderType.indexOf('name')!==-1}" class = "caret"></span>
+	 		</th>
+	 		<th ng-class="{dropup:orderType.indexOf('-quantity')===0}" ng-click="toggleOrderType('quantity')">
+	 			购买数量
+	 			<span ng-class="{orderColor:orderType.indexOf('quantity')!==-1}" class = "caret"></span>
+	 		</th>
+	 			
+	 		<th ng-class="{dropup:orderType.indexOf('-price')===0}" ng-click="toggleOrderType('price')">
+	 			产品单价
+	 			<span ng-class="{orderColor:orderType.indexOf('price')!==-1}" class = "caret"></span>
+	 		</th>
+	 		<th>产品总价</th>
+	 		<th>操作</th>
+	 	</tr>
+	 </thead>
+	 <tbody>
+	 	<tr ng-repeat="item in cart | filter:search |orderBy:orderType">
+	 		<td>{{item.id}}</td>
+	 		<td>{{item.name}}</td>
+	 		<td>
+				<button class="btn btn-primary" type="button" ng-click = "removeOne(item.id)">-</button>
+	 			<input type="text"  value= "{{item.quantity}}" ng-model="item.quantity">
+				<button class="btn btn-primary" type="button" ng-click = "addOne(item.id)">+</button>
+	 			</td>
+	 		<td>{{item.price | currency:'￥'}}</td>
+	 		<td>{{item.price*item.quantity | currency:'￥'}}</td>
+	 		<td>
+	 			<button class="btn btn-danger" type="button" ng-click="remove(item.id)">移除</button>
+	 		</td>
+	 	</tr>
+	 	<tr>
+	 		<td>总购买数量</td>
+	 		<td>{{toTotalPrice()}}</td>
+	 		<td>总购买价格</td>
+	 		<td>{{toTotalQuantity() | currency:'￥'}}</td>
+	 		<td>
+	 			<button class="btn btn-danger" type="button" ng-click="cart={}">清空购物车</button>
+	 		</td>
+	 	</tr>
+	 </tbody>
+	</table>
+	<div ng-show="!cart.length">您的购物车为空~</div>
+	
+</div>
+
+</body>
+</html>

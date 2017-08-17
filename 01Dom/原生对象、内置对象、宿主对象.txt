@@ -1,0 +1,45 @@
+一、原生对象
+
+　　ECMA-262 把原生对象（native object）定义为“独立于宿主环境的 ECMAScript 实现提供的对象”。
+
+　　Object、Function、Array、String、Boolean、Number、Date、RegExp、Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError、ActiveXObject(服务器方面)、Enumerator(集合遍历类)、RegExp（正则表达式）
+
+　　由此可以看出，简单来说，原生对象就是 ECMA-262 定义的类（引用类型）。
+
+
+
+二、内置对象
+
+　　ECMA-262 把内置对象（built-in object）定义为“由 ECMAScript 实现提供的、独立于宿主环境的所有对象，在 ECMAScript 程序开始执行时出现”。这意味着开发者不必明确实例化内置对象，它已被实例化了。
+
+　　同样是“独立于宿主环境”。根据定义我们似乎很难分清“内置对象”与“原生对象”的区别。而ECMA-262 只定义了两个内置对象，即 Global 和 Math （它们也是原生对象，根据定义，每个内置对象都是原生对象）。
+
+　　如此就可以理解了。内置对象是原生对象的一种。而其包含的两种对象中，Math对象我们经常用到，可这个Global对象是啥东西呢？
+
+　　Global对象是ECMAScript中最特别的对象，因为实际上它根本不存在！在ECMAScript中，不存在独立的函数，所有函数都必须是某个对象的方法。(全局对象）
+
+　　类似于isNaN()、parseInt()和parseFloat()方法等，看起来都是函数，而实际上，它们都是Global对象的方法。而且Global对象的方法还不止这些。
+全局对象的方法链接：http://www.w3school.com.cn/jsref/jsref_obj_global.asp
+    方法测试：decodeURI()不能改变参数值，返回值为被解码后的内容
+
+
+三、宿主对象
+
+　　何为“宿主对象”？ ECMAScript中的“宿主”当然就是我们网页的运行环境，即“操作系统”和“浏览器”。所有非原生对象都是宿主对象（host object），即由 ECMAScript 实现的宿主环境提供的对象。
+
+　　所有的 BOM 和 DOM 对象都是宿主对象。因为其对于不同的“宿主”环境所展示的内容不同。其实说白了就是，ECMAScript官方未定义的对象都属于宿主对象，因为其未定义的对象大多数是自己通过ECMAScript程序创建的对象。HTML DOM 是 W3C 标准（是 HTML 文档对象模型的英文缩写，Document Object Model for HTML）。
+
+　　HTML DOM 定义了用于 HTML 的一系列标准的对象，以及访问和处理 HTML 文档的标准方法。
+
+　　通过 DOM，可以访问所有的 HTML 元素，连同它们所包含的文本和属性。可以对其中的内容进行修改和删除，同时也可以创建新的元素。
+
+
+四、原生对象、内置对象、宿主对象的区别
+
+1、内置（Build-in）对象与原生（Naitve）对象的区别在于：前者总是在引擎初始化阶段就被创建好的对象，是后者的一个子集；而后者包括了一些在运行过程中动态创建的对象。
+
+2、引擎扩展对象是一个并不太大的集合，一般来说比较确定，它们也属于引擎的原生对象（但不属于ECMA规范的原生对象）。
+
+3、宿主对象不是引擎的原生对象，而是由宿主框架通过某种机制注册到JavaScript引擎中的对象。
+
+4、一些宿主会把自己提供的对象／构造器也称为“原生对象”，例如Internet Explorer 7就把它提供的XMLHttpRequest()称为原生的——与此相对的是在它的更早先版本中通过“new ActiveXObject('Microsoft.XMLHTTP')”这样的方法创建的对象。这种情况下，读者应注意到“宿主的原生对象”与“引擎的原生对象”之间的差异。

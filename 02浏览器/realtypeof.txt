@@ -1,0 +1,11 @@
+function realtypeof(source){
+  return (source === undefined)
+    ? "undefined"
+    : ("object" === typeof source)
+      ? (/function/i.test( source + "" ))
+        ? "function"
+        : "object"
+      : (source.constructor == RegExp || !(source.constructor instanceof Function))
+        ? "object"
+        : typeof source;
+}

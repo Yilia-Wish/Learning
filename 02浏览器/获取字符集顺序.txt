@@ -1,0 +1,23 @@
+
+×îÖ±½ÓµÄ·½Ê½ÎªÍ¨¹ý HTTP Ð­Òé£¨[RFC2616], 3.4 ¼° 14.17£© "Content-Type" Í·×Ö¶ÎµÄ "charset" ½«ÎÄµµµÄ×Ö·û±àÂë¸æËßÓÃ»§¶Ë¡£ÀýÈçÒÔÏÂ HTTP Í·ÉùÃ÷ÁË×Ö·û±àÂëÎª ISO-8859-1£º
+
+Content-Type: text/html; charset=ISO-8859-1
+´¦ÓÚÄ³ÖÖÇé¿öÎÞ·¨·ÃÎÊ·þÎñÆ÷Ê±£¬HTML ÎÄµµ¿ÉÒÔ°üº¬ÓÐ¹ØÎÄµµµÄ×Ö·û±àÂëµÄÃ÷È·ÐÅÏ¢£¬META ÔªËØ¿ÉÒÔÓÃÀ´ÎªÓÃ»§¶ËÌá¹©ÕâÐ©ÐÅÏ¢¡£ÀýÈçÖ¸¶¨µ±Ç°ÎÄµµµÄ×Ö·û±àÂëÎª ISO-8859-1£¬ÎÄµµÖÐÓ¦°üº¬ÈçÏÂ META ÉùÃ÷£º
+
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+µ± HTTP Ð­ÒéÓë META ÔªËØ¾ùÃ»ÓÐÌá¹©ÓÐ¹ØÒ»¸öÎÄµµµÄ×Ö·û±àÂëÐÅÏ¢Ê±£¬HTML »¹ÎªÒ»Ð©ÔªËØÌá¹©ÁË charset ÊôÐÔ¡£½áºÏÕâÐ©»úÖÆ£¬×÷Õß¿ÉÒÔÔÚºÜ´ó³Ì¶ÈÉÏÌá¸ßµ±ÓÃ»§»ñÈ¡×ÊÔ´Ê±ÓÃ»§¶ËÊ¶±ð×Ö·û±àÂëµÄ»ú»á¡£
+
+Õë¶ÔÈçºÎÈ·¶¨Ò»¸öÎÄµµµÄ×Ö·û±àÂë£¬ÓÃ»§´úÂë±ØÐë×ñÊØÏÂÃæµÄÓÅÏÈ¼¶Ë³Ðò£¨ÓÅÏÈ¼¶ÓÉ¸ßÖÁµÍ£©£º
+
+HTTP "Content-Type" ×Ö¶ÎÖÐµÄ "charset" ²ÎÊý¡£
+META ÉùÃ÷ÖÐ "http-equiv" Îª "Content-Type" ¶ÔÓ¦µÄÖµÖÐµÄ "charset" µÄÖµ¡£
+ÔªËØµÄ charset ÊôÐÔ¡£
+¹ØÓÚ ×Ö·û±àÂë µÄÏêÏ¸ÐÅÏ¢£¬Çë²Î¿¼ HTML4.01 ¹æ·¶ 5.2 Character encodings ÒÔ¼° W3C Internationalization ¹ØÓÚ Character encodings ÖÐµÄÄÚÈÝ¡£
+
+
+
+
+
+
+Ê×ÏÈ£¬¶ÔÓÚ¶¯Ì¬Ò³Ãæ±ØÐëÈ·±£ HTTP "Content-Type" Í·×Ö¶ÎµÄ "charset" ²ÎÊýÓëÒ³Ãæ×ÔÉí±àÂëÏà·û£¬ÇÒÎñ±ØÔÚÒ³ÃæµÄ META ÔªËØÖÐÒ²ÉùÃ÷Ïà·ûµÄ×Ö·û±àÂëÐÅÏ¢¡£¶ÔÓÚ¾²Ì¬Ò³Ãæ£¬±ØÐë±£Ö¤Ò³ÃæÖÐ META ÔªËØÉùÃ÷ÖÐ "http-equiv" Îª "Content-Type" ¶ÔÓ¦µÄÖµÖÐµÄ "charset" µÄÖµÓëÒ³Ãæ×ÔÉí±àÂëÏà·û¡£
+Æä´Î£¬ÔÚÉèÖÃ×Ö·û±àÂë±ðÃûÊ±£¬×îºÃÊ¹ÓÃ×îÍ¨ÓÃµÄ¡¢¸÷ä¯ÀÀÆ÷¾ù¿ÉÊ¶±ðµÄ±àÂë±ðÃû¡£

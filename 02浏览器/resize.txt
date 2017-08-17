@@ -1,0 +1,11 @@
+1. 不期望触发 window.onresize 事件时：
+
+为 HTML 与 BODY 元素设置 height:100% 和 width:100% 以防止因为其尺寸变化而触发 window.onresize 事件，如上表中第三行。
+
+2. 期望触发 window.onresize 事件时：
+
+在非 IE 浏览器中，主动去触发一次 window.onresize 事件，代码如下：
+
+var evt = document.createEvent("MouseEvents");
+evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+window.dispatchEvent(evt);

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+<head>
+	<title>my cart</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src = "dev/angular-1.6.5/angular.js"></script>
+	<!-- <script type="text/javascript" src = "dev/bootstrap-3.3.7-dist/js/bootstrap.js"></script> -->
+
+	<script type="text/javascript" src = "index-drop.js"></script>
+	<link rel="stylesheet" type="text/css" href="dev/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body >
+<div class ="container" ng-controller="myController">
+	<collapse-group>
+		<collapse-component ng-repeat="item in data" heading="{{item.title}}">
+			{{item.name}}
+		</collapse-component>
+	</collapse-group>
+	
+</div>
+
+</body>
+</html>

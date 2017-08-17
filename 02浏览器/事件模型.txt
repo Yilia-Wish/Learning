@@ -1,0 +1,33 @@
+解决方案
+1. 使用特性判断创建无兼容性问题的事件监听器绑定和解绑函数
+
+如：
+
+function addEvent(elem, type, handler, useCapture){
+  elem.addEventListener ? elem.addEventListener(type, handler, useCapture) :
+    elem.attachEvent("on" + type, handler);
+}
+
+function removeEvent(elem, type, handler, useCapture){
+  elem.removeEventListener ? elem.removeEventListener(type, handler, useCapture) :
+    elem.detachEvent("on" + type, handler);
+}
+2. 使用特性判断获得有效的事件对象
+
+在事件监听器中判断传入的第一个参数或 window.event 是否有效，如：
+
+function handler(e){
+  e = e || window.event;
+}
+3. 使用特性判断使用与标准对应的非标准方法及属性
+
+尽管 IE 对事件对象的标准属性和方法支持有限，但它自己实现的事件模型也基本能够替代或实现标准属性或方法的功能。
+
+下表总结了部分与标准事件对象对应的，或可以实现标准属性或方法功能的非标准属性：
+
+Standard	Non-standard
+target	srcElement
+preventDefault()	returnValue
+stopPropagation()	cancelBubble
+relatedTarget	fromElement toElement
+另，标准的 'clientX' 属性和非标准的 'x' 属性作用是相同的，同样 'clientY' 和 'y' 也是。

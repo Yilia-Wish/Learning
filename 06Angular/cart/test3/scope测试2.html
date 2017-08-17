@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>my cart</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src = "../dev/angular-1.6.5/angular.js"></script>
+	<!-- <script type="text/javascript" src = "index.js"></script> -->
+	
+</head>
+<body ng-app="watchDemo">
+    <!--外部scope-->
+    <p>父scope：<input type="text" ng-model="input"></p>
+
+    <!--内部隔离scope-->
+    <!--注意这里，函数名字也要用 连字符命名法-->
+    <my-directive get-my-text="input"></my-directive>
+
+    <script>
+        var app = angular.module('watchDemo', []);
+        app.directive('myDirective', function () {
+            return {
+                restrict: 'E',
+                replace: true,
+                template: '<div>子scope<input ng-model= "getMyText()"/><p>结果：{{ getMyText() }}</p></div>',
+                scope: {
+                    getMyText: '&' // 这里改成了函数返回值的绑定
+                }
+            }
+        });
+    </script>
+</body>
+</html>
